@@ -6,21 +6,19 @@ export default function Main(){
     const ingredientsListItems = ingredients.map(ingredient => <li key={ingredient}>{ingredient}</li>)
 
 
-    function handleSubmit(event){
-        event.preventDefault()
-        const formData = new FormData(event.currentTarget)
+    function addIngredient(formData){
         const newIngredient = formData.get("ingredient")
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
 
     return (
         <main>
-            <form onSubmit={handleSubmit} className="add-ingredient-form">
+            <form action={addIngredient} className="add-ingredient-form">
                 <input type="text" 
-                aria-label="Escribe el ingrediente"
-                placeholder="Ej. Orégano" 
+                aria-label="Add ingredient"
+                placeholder="e.g oregano" 
                 name="ingredient"/>
-                <button>Escribe el ingrediente</button>
+                <button>Add ingredient</button>
             </form>
             <ul>
                 {ingredientsListItems}
